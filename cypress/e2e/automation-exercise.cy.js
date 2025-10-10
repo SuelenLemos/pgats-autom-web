@@ -24,7 +24,7 @@ describe('Automation Exercise', () => {
         cy.visit('https://automationexercise.com/');
         cy.get('a[href="/login"]').click();
         cy.get('[data-qa="signup-name"]').type('Auau Tester');
-        cy.get('[data-qa="signup-email"]').type(`auau-${timestamp}@tester.com`);
+        cy.get('[data-qa="signup-email"]').type(`auau-@tester.com`);
         cy.get('button[data-qa="signup-button"]').click();
         // se fosse pelo texto do botão:
         // cy.get('button:contains("Signup")').click();
@@ -56,6 +56,51 @@ describe('Automation Exercise', () => {
     });
 
     
+    it('Fazer login com sucesso', () => {
+        cy.visit('https://automationexercise.com/');
+        cy.get('a[href="/login"]').click();
+        cy.get('[data-qa="login-email"]').type('miau.cat@tester.com');
+        cy.get('[data-qa="login-password"]').type('123456', {log: false});
+        cy.get('[data-qa="login-button"]').click();
+        cy.get('i.fa-user').parent().should('contain', 'miau miau'); 
+        // o nome do usuário aparece dentro de um "link" , a classe desse link se chama fa fa-user,
+        //O comando parent vai pegar a classe como referencia e subir um nível na hierarquia do html
+        // para verificar se o nome do usuário está visível na tela.
 
+         });
 
-});
+    it('Fazer login com usuário incorreto', () => {
+        cy.visit('https://automationexercise.com/');
+        cy.get('a[href="/login"]').click();
+        cy.get('[data-qa="login-email"]').type('kikat44444@tester.com');
+        cy.get('[data-qa="login-password"]').type('123456', {log: false});
+        cy.get('[data-qa="login-button"]').click();
+        cy.contains('p','Your email or password is incorrect!').should('be.visible');
+        // o nome do usuário aparece dentro de um "link" , a classe desse link se chama fa fa-user,
+        //O comando parent vai pegar a classe como referencia e subir um nível na hierarquia do html
+        // para verificar se o nome do usuário está visível na tela.
+
+         });
+
+    it('Fazer logout', () => {
+        cy.visit('https://automationexercise.com/');
+        cy.get('a[href="/login"]').click();
+        cy.get('[data-qa="login-email"]').type('miau.cat@tester.com');
+        cy.get('[data-qa="login-password"]').type('123456', {log: false});
+        cy.get('[data-qa="login-button"]').click();
+        cy.get('i.fa-user').parent().should('contain', 'miau miau'); 
+        cy.get('a[href="/logout"]').click();
+        cy.get('a[href="/login"]').should('be.visible');
+
+         });
+
+    it.only('Tentar cadastrar usuário com email já existente', () => {
+        cy.visit('https://automationexercise.com/');
+        cy.get('a[href="/login"]').click();
+        cy.get('[data-qa="signup-name"]').type('Auau Tester');
+        cy.get('[data-qa="signup-email"]').type(`miau.cat@tester.com`);
+        cy.get('button[data-qa="signup-button"]').click();
+        cy.get('p:contains("Email Address already exist!")').should('be.visible');
+        });
+
+}); 
