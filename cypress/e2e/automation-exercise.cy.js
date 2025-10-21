@@ -19,7 +19,7 @@
 
 
 describe('Automation Exercise', () => {
-    it('Cadatrar usuário com sucesso', () => {
+    it('1-Cadatrar usuário com sucesso', () => {
         const timestamp = new Date().getTime(); //gera um número único baseado no tempo atual, para evitar utilizar email que já existe no site
         cy.visit('https://automationexercise.com/');
         cy.get('a[href="/login"]').click();
@@ -56,7 +56,7 @@ describe('Automation Exercise', () => {
     });
 
     
-    it('Fazer login com sucesso', () => {
+    it('2-Fazer login com sucesso', () => {
         cy.visit('https://automationexercise.com/');
         cy.get('a[href="/login"]').click();
         cy.get('[data-qa="login-email"]').type('miau.cat@tester.com');
@@ -69,7 +69,7 @@ describe('Automation Exercise', () => {
 
          });
 
-    it('Fazer login com usuário incorreto', () => {
+    it('3-Fazer login com usuário incorreto', () => {
         cy.visit('https://automationexercise.com/');
         cy.get('a[href="/login"]').click();
         cy.get('[data-qa="login-email"]').type('kikat44444@tester.com');
@@ -82,7 +82,7 @@ describe('Automation Exercise', () => {
 
          });
 
-    it('Fazer logout', () => {
+    it('4-Fazer logout', () => {
         cy.visit('https://automationexercise.com/');
         cy.get('a[href="/login"]').click();
         cy.get('[data-qa="login-email"]').type('miau.cat@tester.com');
@@ -94,7 +94,7 @@ describe('Automation Exercise', () => {
 
          });
 
-    it.only('Tentar cadastrar usuário com email já existente', () => {
+    it.only('5-Tentar cadastrar usuário com email já existente', () => {
         cy.visit('https://automationexercise.com/');
         cy.get('a[href="/login"]').click();
         cy.get('[data-qa="signup-name"]').type('Auau Tester');
