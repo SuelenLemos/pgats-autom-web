@@ -1,3 +1,4 @@
+import userData from '../fixtures/example.json';
 
 describe('Automation Exercise', () => {
     beforeEach(() => {
