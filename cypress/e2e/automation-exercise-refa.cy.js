@@ -1,28 +1,14 @@
-/// <reference types = "cypress" />
-//describe ou context - suite ou conjunto de testes em um mesmo arquio
-// it - um teste dentro de um bloco ou conjunto de teste
-
-//describe - Automation Exercise
-// it - Cadastra usuário com sucesso - primeiro teste
-//it  - Cadastra usuário com email já existente - segundo teste
-
-// before - executa uma vez antes de todos os testes
-// after - executa uma vez depois de todos os testes
-// beforeEach - executa antes de cada teste
-// afterEach - executa depois de cada teste
-
-//rastrear elementos no html
-// TAG  - h1, div, input, button, select, etc
-// ID - #nomeDoId (sempre com hashtag #)
-// CLASS - .nomeDaClasse (.form-control)
-// Atributo - [atributo="valor"] ([data-qa="signup-name"])(name, placeholder, type, etc)
-
 
 describe('Automation Exercise', () => {
-    it('1-Cadatrar usuário com sucesso', () => {
-        const timestamp = new Date().getTime(); //gera um número único baseado no tempo atual, para evitar utilizar email que já existe no site
+    beforeEach(() => {
+        cy.viewport('iphone-xr');
         cy.visit('https://automationexercise.com/');
         cy.get('a[href="/login"]').click();
+
+    });
+    it('1-Cadatrar usuário com sucesso', () => {
+        const timestamp = new Date().getTime(); //gera um número único baseado no tempo atual, para evitar utilizar email que já existe no site
+        
         cy.get('[data-qa="signup-name"]').type('Auau Tester');
         cy.get('[data-qa="signup-email"]').type(`auau-@tester.com`);
         cy.get('button[data-qa="signup-button"]').click();
@@ -57,8 +43,7 @@ describe('Automation Exercise', () => {
 
     
     it('2-Fazer login com sucesso', () => {
-        cy.visit('https://automationexercise.com/');
-        cy.get('a[href="/login"]').click();
+       
         cy.get('[data-qa="login-email"]').type('miau.cat@tester.com');
         cy.get('[data-qa="login-password"]').type('123456', {log: false});
         cy.get('[data-qa="login-button"]').click();
@@ -70,8 +55,7 @@ describe('Automation Exercise', () => {
          });
 
     it('3-Fazer login com usuário incorreto', () => {
-        cy.visit('https://automationexercise.com/');
-        cy.get('a[href="/login"]').click();
+       
         cy.get('[data-qa="login-email"]').type('kikat44444@tester.com');
         cy.get('[data-qa="login-password"]').type('123456', {log: false});
         cy.get('[data-qa="login-button"]').click();
@@ -83,8 +67,7 @@ describe('Automation Exercise', () => {
          });
 
     it('4-Fazer logout', () => {
-        cy.visit('https://automationexercise.com/');
-        cy.get('a[href="/login"]').click();
+        
         cy.get('[data-qa="login-email"]').type('miau.cat@tester.com');
         cy.get('[data-qa="login-password"]').type('123456', {log: false});
         cy.get('[data-qa="login-button"]').click();
@@ -95,18 +78,10 @@ describe('Automation Exercise', () => {
          });
 
     it('5-Tentar cadastrar usuário com email já existente', () => {
-        cy.visit('https://automationexercise.com/');
-        cy.get('a[href="/login"]').click();
+        
         cy.get('[data-qa="signup-name"]').type('Auau Tester');
         cy.get('[data-qa="signup-email"]').type(`miau.cat@tester.com`);
         cy.get('button[data-qa="signup-button"]').click();
         cy.get('p:contains("Email Address already exist!")').should('be.visible');
         });
-
-    it.only('5-Tentar cadastrar usuário com email já existente', () => {
-        cy.visit('https://automationexercise.com/');
-        cy.get('a[href="/contact_us"]').click();
-        
-        });
-
-}); 
+});
