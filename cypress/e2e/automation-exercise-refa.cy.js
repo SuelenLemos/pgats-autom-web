@@ -1,4 +1,6 @@
+import { faker } from '@faker-js/faker';
 import userData from '../fixtures/example.json';
+import { getRandonEmail } from '../support/helpers.js';
 
 describe('Automation Exercise', () => {
     beforeEach(() => {
@@ -7,11 +9,13 @@ describe('Automation Exercise', () => {
         cy.get('a[href="/login"]').click();
 
     });
-    it('1-Cadatrar usuário com sucesso', () => {
+    it.only('1-Cadatrar usuário com sucesso', () => {
         const timestamp = new Date().getTime(); //gera um número único baseado no tempo atual, para evitar utilizar email que já existe no site
         
         cy.get('[data-qa="signup-name"]').type('Auau Tester');
-        cy.get('[data-qa="signup-email"]').type(`auau-@tester.com`);
+        const randomEmail = getRandonEmail();
+        console.log('Email gerado:', randomEmail);
+        cy.get('[data-qa="signup-email"]').type(randomEmail);
         cy.get('button[data-qa="signup-button"]').click();
         // se fosse pelo texto do botão:
         // cy.get('button:contains("Signup")').click();
@@ -26,14 +30,14 @@ describe('Automation Exercise', () => {
         cy.get('[data-qa=years]').select('2000');
         cy.get('input[type =checkbox]#newsletter').check();
         cy.get('input[type =checkbox]#optin').check();
-        cy.get('[data-qa=first_name]').type('Auau');
-        cy.get('input#last_name').type('Tester');
+        cy.get('[data-qa=first_name]').type(faker.person.firstName());
+        cy.get('input#last_name').type(faker.person.lastName());
         cy.get('[data-qa=company]').type('PGATS');
-        cy.get('input#address1').type('Rua dos Cachorros, 123');
+        cy.get('input#address1').type(faker.location.streetAddress());
         cy.get('select#country').select('Singapore');
-        cy.get('input#state').type('State Test');
-        cy.get('input#city').type('City Test');
-        cy.get('input#zipcode').type('12345-678');
+        cy.get('input#state').type(faker.location.state());
+        cy.get('input#city').type(faker.location.city());
+        cy.get('input#zipcode').type(faker.location.zipCode());
         cy.get('input#mobile_number').type('+55 11 91234-5678');
         cy.get('[data-qa="create-account"]').click();
 
@@ -87,7 +91,7 @@ describe('Automation Exercise', () => {
         });
 
 
-    it.only('6-Formulario de contato', () => {
+    it('6-Formulario de contato', () => {
         cy.get('a[href*=contact]').click();
         cy.get('input[data-qa="name"]').type(userData.name);        
         cy.get('input[data-qa="email"]').type(userData.email);
