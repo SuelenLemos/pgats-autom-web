@@ -16,6 +16,7 @@
 // ID - #nomeDoId (sempre com hashtag #)
 // CLASS - .nomeDaClasse (.form-control)
 // Atributo - [atributo="valor"] ([data-qa="signup-name"])(name, placeholder, type, etc)
+//ex busca por um href - a[href="/login"]
 
 
 describe('Automation Exercise', () => {

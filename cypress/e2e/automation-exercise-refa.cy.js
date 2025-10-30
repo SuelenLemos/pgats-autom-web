@@ -85,4 +85,17 @@ describe('Automation Exercise', () => {
         cy.get('button[data-qa="signup-button"]').click();
         cy.get('p:contains("Email Address already exist!")').should('be.visible');
         });
+
+
+    it.only('6-Formulario de contato', () => {
+        cy.get('a[href*=contact]').click();
+        cy.get('input[data-qa="name"]').type(userData.name);        
+        cy.get('input[data-qa="email"]').type(userData.email);
+        cy.get('input[data-qa="subject"]').type(userData.subject);
+        cy.get('textarea[data-qa="message"]').type(userData.message);
+        cy.fixture('cypressTest.png').as('fileToUpload');
+        cy.get('input[type=file').selectFile('@fileToUpload');
+        cy.get('[data-qa="submit-button"]').click();
+        cy.get('.status').should('be.visible').and('have.text', 'Success! Your details have been submitted successfully.');
+    });
 });
