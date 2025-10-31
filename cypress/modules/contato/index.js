@@ -1,4 +1,4 @@
-
+import userData from '../../fixtures/example.json';
 
 class Contato{
     preencherFormularioDeContato(){

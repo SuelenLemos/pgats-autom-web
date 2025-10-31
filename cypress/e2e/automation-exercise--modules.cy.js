@@ -56,8 +56,8 @@ describe('Automation Exercise', () => {
         });
 
 
-    it('6-Formulario de contato', () => {
-        menu.navegarParaContato
+    it.only('6-Formulario de contato', () => {
+        menu.navegarParaContato();
         contato.preencherFormularioDeContato();
         cy.get('.status').should('be.visible').and('have.text', 'Success! Your details have been submitted successfully.');
     });
