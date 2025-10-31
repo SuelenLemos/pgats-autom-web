@@ -11,3 +11,4 @@ class Contato{
         cy.get('[data-qa="submit-button"]').click();
     }
 }
+export default new Contato();

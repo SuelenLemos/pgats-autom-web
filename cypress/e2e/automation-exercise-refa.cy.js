@@ -13,9 +13,9 @@ describe('Automation Exercise', () => {
         const timestamp = new Date().getTime(); //gera um número único baseado no tempo atual, para evitar utilizar email que já existe no site
         
         cy.get('[data-qa="signup-name"]').type('Auau Tester');
-        const randomEmail = getRandonEmail();
-        console.log('Email gerado:', randomEmail);
-        cy.get('[data-qa="signup-email"]').type(randomEmail);
+        const randonEmail = getRandonEmail();
+        console.log('Email gerado:', randonEmail);
+        cy.get('[data-qa="signup-email"]').type(randonEmail);
         cy.get('button[data-qa="signup-button"]').click();
         // se fosse pelo texto do botão:
         // cy.get('button:contains("Signup")').click();

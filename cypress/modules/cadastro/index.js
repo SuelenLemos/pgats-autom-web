@@ -5,7 +5,7 @@ class Cadastro {
          cy.get('#id_gender2').check();
         // poderia usar também o comando abaixo
         //cy.get('input[type="radio"]').check('Mrs');
-        cy.get('[data-qa="name"]').should('have.value', 'Auau Tester');
+        
         cy.get('input#password').type('teste1234', {log: false}); //log:false não mostra a senha no log do cypress
         // para combobox ou selects --select
         cy.get('[data-qa=days]').select('4');

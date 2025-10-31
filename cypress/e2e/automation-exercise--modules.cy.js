@@ -4,7 +4,7 @@ import menu from '../modules/menu';
 import login from '../modules/login';
 import cadastro from '../modules/cadastro';
 import contato from '../modules/contato';
-import { getRandonEmail } from '../support/helpers.js';
+
 
 describe('Automation Exercise', () => {
     beforeEach(() => {
@@ -49,7 +49,8 @@ describe('Automation Exercise', () => {
 
     it('5-Tentar cadastrar usuário com email já existente', () => {
         
-        login.preencherLoginESenha(userData.email, 'testeemailcadastrado');
+        cy.get('[data-qa="signup-name"]').type('Auau Tester');
+        cy.get('[data-qa="signup-email"]').type(`miau.cat@tester.com`);
         cy.get('button[data-qa="signup-button"]').click();
         cy.get('p:contains("Email Address already exist!")').should('be.visible');
         });
@@ -57,8 +58,7 @@ describe('Automation Exercise', () => {
 
     it('6-Formulario de contato', () => {
         menu.navegarParaContato
-        contato.preenderFormularioDeContato();
-
+        contato.preencherFormularioDeContato();
         cy.get('.status').should('be.visible').and('have.text', 'Success! Your details have been submitted successfully.');
     });
 });
