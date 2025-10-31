@@ -104,7 +104,7 @@ describe('Automation Exercise', () => {
         cy.get('p:contains("Email Address already exist!")').should('be.visible');
         });
 
-    it.only('5-Tentar cadastrar usuário com email já existente', () => {
+    it('5-Tentar cadastrar usuário com email já existente', () => {
         cy.visit('https://automationexercise.com/');
         cy.get('a[href="/contact_us"]').click();
         

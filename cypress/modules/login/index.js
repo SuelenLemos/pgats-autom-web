@@ -1,5 +1,5 @@
 import {faker} from '@faker-js/faker';
-import { getRandonEmail } from '../support/helpers.js';
+
 
 class login{
      preencherFormularioPreCadastro(){

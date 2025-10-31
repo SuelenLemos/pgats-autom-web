@@ -1,10 +1,10 @@
 import { faker } from '@faker-js/faker';
 import userData from '../fixtures/example.json';
-import { getRandonEmail } from '../support/helpers.js';
 import menu from '../modules/menu';
 import login from '../modules/login';
 import cadastro from '../modules/cadastro';
 import contato from '../modules/contato';
+import { getRandonEmail } from '../support/helpers.js';
 
 describe('Automation Exercise', () => {
     beforeEach(() => {
@@ -13,7 +13,7 @@ describe('Automation Exercise', () => {
         menu.navegarParaLogin();
 
     });
-    it.only('1-Cadatrar usuário com sucesso', () => {
+    it('1-Cadatrar usuário com sucesso', () => {
          
         login.preencherFormularioPreCadastro();
         cadastro.preencherFormularioCadastroCompleto();
