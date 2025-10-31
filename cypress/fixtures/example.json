@@ -1,9 +1,10 @@
 {
-  "name": "Auau Tester",
-  "email": "hello@cypress.io",
+  "name": "miau miau",
+  "email": "miau.cat@tester.com",
   "subject": "Fixtures in Cypress",
   "message": "This is a message sent from a fixture file in Cypress",
-  "body": "Fixtures are a great way to mock data for responses to routes"
+  "body": "Fixtures are a great way to mock data for responses to routes",
+  "password": "123456"
 
   
 }
