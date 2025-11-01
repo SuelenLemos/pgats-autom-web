@@ -112,7 +112,7 @@ describe('Automation Exercise', () => {
     });
 
     // TEST CASE 15 - Place Order: Register while Checkout
-    it.only('15 - finalizar pedido com cadastro durante checkout', () => {
+    it('15 - finalizar pedido com cadastro durante checkout', () => {
         const email = faker.internet.email();
         const password = faker.internet.password();
         
