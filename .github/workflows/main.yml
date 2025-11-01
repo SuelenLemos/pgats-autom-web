@@ -5,34 +5,44 @@ on:
 
 jobs:
   e2e-tests:
-
     runs-on: ubuntu-latest
 
     steps: 
-
-      # clone do projeto para a máquina
+      # Clone do projeto para a máquina
       - uses: actions/checkout@v4
 
-      # Conferir a versão instalada
-      - name: Node version
-        run: node --version
+      # Setup Node.js com cache para npm
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
 
+      # Instalar dependências CORRETAMENTE
       - name: Instalando dependências
-        run: npm install
+        run: |
+          npm ci
+          npx cypress install
 
+      # Verificar instalação do Cypress
+      - name: Verificar Cypress
+        run: npx cypress verify
+
+      # Executar os testes com configuração específica
       - name: Executando os testes
-        run: npx cypress run
+        run: npx cypress run --browser chrome --headed
+        env:
+          NODE_ENV: test
 
+      # Upload de artifacts
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: relatorios
+          name: relatorios-e2e
           path: |
-            cypress/reports
-            cypress/screenshots
-            cypress/videos
-      
-
-      
+            cypress/reports/
+            cypress/screenshots/
+            cypress/videos/
+          retention-days: 7
 
     
