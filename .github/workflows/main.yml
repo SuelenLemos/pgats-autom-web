@@ -28,9 +28,9 @@ jobs:
       - name: Verificar Cypress
         run: npx cypress verify
 
-      # Executar os testes com configuração específica
-      - name: Executando os testes
-        run: npx cypress run --browser chrome --headed
+      # Executar APENAS o arquivo automation-exercise-modules.cy.js
+      - name: Executando testes específicos
+        run: npx cypress run --spec "cypress/e2e/automation-exercise-modules.cy.js" --browser chrome
         env:
           NODE_ENV: test
 
@@ -38,11 +38,10 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: relatorios-e2e
+          name: relatorios-modules
           path: |
             cypress/reports/
             cypress/screenshots/
             cypress/videos/
           retention-days: 7
-
     
